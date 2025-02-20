@@ -1,0 +1,10 @@
+sh/
+note.txt
+backlog.txt
+.DS_Store
+app/.DS_Store
+assets/.DS_Store
+demo/.DS_Store
+docs/.DS_Store
+resources/.DS_Store
+.vscode/

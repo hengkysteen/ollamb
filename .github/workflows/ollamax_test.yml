@@ -1,0 +1,31 @@
+name: ollamax_test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/ollamax/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.24.3
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: packages/ollamax
+
+      - name: Run Tests
+        run: flutter test --reporter expanded --concurrency=1
+        working-directory: packages/ollamax
+
