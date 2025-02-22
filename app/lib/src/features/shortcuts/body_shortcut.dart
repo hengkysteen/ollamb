@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:ollamb/src/core/core.dart';
 import 'package:ollamb/src/core/modules/conversation/view_models/conversation_vm.dart';
 import 'package:ollamb/src/core/modules/ollama/ollama_vm.dart';
+import 'package:ollamb/src/features/conversation/input/input_vm.dart';
 import 'package:ollamb/src/features/model_list/model_list_view.dart';
 import 'package:ollamb/src/features/model_options/model_options_view.dart';
+import 'package:ollamb/src/features/prompts/prompts_view.dart';
 import 'package:ollamb/src/services/keyboard_shortcuts.dart';
 import 'package:wee_kit/wee_kit.dart';
 
@@ -66,6 +68,23 @@ class BodyShortcut {
             },
           ),
           // USER PROMPTS KEYBOARD SHORTCUT TODO @features/prompts
+          // SHIFT LEFT + F = SHOW PROMPTS
+          _shortcuts.holdShiftLeft(
+            key: LogicalKeyboardKey.keyF,
+            event: event,
+            callback: () {
+              WeeShow.bluredDialog(
+                context: context,
+                child: PromptsCollectionsView(
+                  type: 2,
+                  onSelect: (data) {
+                    InputVm.find.textEditingController.text = data;
+                    InputVm.find.inputFocusNode.requestFocus();
+                  },
+                ),
+              );
+            },
+          ),
         ],
       );
     };

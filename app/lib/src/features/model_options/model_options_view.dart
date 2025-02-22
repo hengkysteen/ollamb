@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:ollamb/src/core/modules/ollama/ollama_vm.dart';
 import 'package:ollamb/src/features/model_options/model_options_vm.dart';
+import 'package:ollamb/src/features/prompts/widgets/prompts_button.dart';
 import 'package:ollamb/src/widgets/dropdown.dart';
 import 'package:ollamb/src/widgets/style.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -370,6 +371,7 @@ class ModelOptionsView extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.all(10.0),
                               // SYSTEM PROMPTS BUTTON TODO @features/prompts
+                              child: const SystemPromptsButton(),
                             ),
                           )
                         ],
