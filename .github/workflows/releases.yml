@@ -1,0 +1,64 @@
+name: github_releases
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build-release:
+    if: startsWith(github.ref, 'refs/tags/v') && contains(github.ref, '-') == false
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.24.3
+          cache: true
+
+      - name: Enable macOS
+        run: flutter config --enable-macos-desktop
+
+      - name: Install Dependencies
+        run: flutter pub get
+        working-directory: app
+
+      # Build macOS
+      - name: Build macOS App
+        run: flutter build macos --release
+        working-directory: app
+
+      - name: Zip macOS App
+        run: |
+          cd build/macos/Build/Products/Release
+          ditto -c -k --sequesterRsrc --keepParent Ollamb.app Ollamb-macos.zip
+        working-directory: app
+
+      # Build Web
+      - name: Build Web App
+        run: flutter build web --release --web-renderer html
+        working-directory: app
+
+      - name: Zip Web App
+        run: |
+          cd build/web
+          zip -r Ollamb-web.zip .
+        working-directory: app
+
+      # Upload to GitHub Releases
+      - name: Upload Builds to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ./app/build/macos/Build/Products/Release/Ollamb-macos.zip
+            ./app/build/web/Ollamb-web.zip
+          body_path: .github/notes.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
