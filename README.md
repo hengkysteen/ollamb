@@ -3,10 +3,10 @@
 A simple ollama client.
 
 <p>
-<img src="assets/image.jpg" width="200" />
-<img src="assets/image.jpg" width="200" /> 
-<img src="assets/image.jpg" width="200" />
-<img src="assets/image.jpg" width="200" /> 
+<img src="assets/ss/1.png" width="200" />
+<img src="assets/ss/2.png" width="200" />
+<img src="assets/ss/3.png" width="200" />
+<img src="assets/ss/4.png" width="200" />
 </P>
 
 ## Demo
