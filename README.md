@@ -1,16 +1,75 @@
-# ollamb
+# Ollamb
 
-A new Flutter project.
+A simple ollama client.
 
-## Getting Started
+<p>
+<img src="assets/image.jpg" width="200" />
+<img src="assets/image.jpg" width="200" /> 
+<img src="assets/image.jpg" width="200" />
+<img src="assets/image.jpg" width="200" /> 
+</P>
 
-This project is a starting point for a Flutter application.
+## Demo
 
-A few resources to get you started if this is your first Flutter project:
+[Web Demo](https://hengkysteen.github.io/demo/ollamb/)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+To use this demo, set `OLLAMA_ORIGINS` to the demo URL.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+# MacOs Example
+launchctl setenv OLLAMA_ORIGINS "https://hengkysteen.github.io"
+```
+
+For other OS, refer to the [official documentation.](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-do-i-configure-ollama-server)
+
+## Build
+
+This project is built with Flutter. To prevent version conflicts, it is recommended to use the stable version **v3.24.3**.
+
+```sh
+# Clone Repository
+git clone https://github.com/hengkysteen/ollamb.git
+
+# Change Directory
+cd ollamb/app
+
+# build for web html
+flutter build web --web-renderer html
+
+# build for web canvas
+flutter build web --web-renderer canvas
+
+# build for macos
+flutter build macos
+
+# build for linux (flutter_tts unsuported)
+flutter build linux
+
+# Windows, Android, and iOS not available yet.
+```
+
+## PreBuild
+
+1. Go to the [Releases](https://github.com/hengkysteen/ollamb/releases/latest) page.
+2. In assets list , Download the file you need:
+   - **Ollamb-macos.zip** for macOS
+   - **Ollamb-web.zip** for Web
+
+### macOS
+
+> Ollamb.app is from an unidentified developer.<br>
+> It is safe to use but not notarized by Apple since it was built without an Apple Developer account.
+
+1. Extract and run `Ollamb.app`.
+2. Go to **System Settings > Privacy & Security**.
+3. In the **Security** section, tap `Open Anyway`, then confirm by tapping `Open`.
+
+### Web
+
+Extract the archive and run it using any local HTTP server.
+
+```sh
+# Example using npm http-server
+cd Ollamb-web
+http-server
+```
