@@ -6,13 +6,16 @@ import 'package:ollamb/src/core/modules/preferences/preferences_module.dart';
 import 'package:ollamb/src/core/modules/conversation/data/conversation_repository.dart';
 import 'package:ollamb/src/core/modules/conversation/data/conversation_storage.dart';
 import 'package:ollamb/src/core/modules/conversation/view_models/conversation_vm.dart';
+import 'package:ollamb/src/features/prompts/data/prompt_storage.dart';
 
 class DM {
   static final DM _instance = DM._internal();
   factory DM() => _instance;
   DM._internal();
 
-  static late OllamaModule ollamaModule;
+  static late final OllamaModule ollamaModule;
+
+  static late final PromptStorage promptStorage;
 
   static Future<void> init() async {
     try {
@@ -32,6 +35,10 @@ class DM {
       await storage.init();
       Get.put(ConversationVm(ConversationRepository(storage), ollamaModule.repository));
       await ConversationVm.find.getMetaConversations();
+
+      // PROMPTS SETUP
+      promptStorage = PromptStorage(Core.fileService);
+      await promptStorage.init();
     } catch (e) {
       // ERRROR
     }

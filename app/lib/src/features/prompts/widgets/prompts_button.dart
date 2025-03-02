@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ollamb/src/features/conversation/input/input_vm.dart';
 import 'package:ollamb/src/features/model_options/model_options_vm.dart';
-import 'package:ollamb/src/features/prompts/prompts_view.dart';
+import 'package:ollamb/src/features/prompts/prompt_view.dart';
 import 'package:wee_kit/wee_kit.dart';
 
 class SystemPromptsButton extends StatelessWidget {
@@ -14,7 +14,7 @@ class SystemPromptsButton extends StatelessWidget {
       onPressed: () {
         WeeShow.bluredDialog(
           context: context,
-          child: PromptsCollectionsView(
+          child: PromptView(
             type: 1,
             onSelect: (data) {
               ModelOptionsVm.find.systemPromptController.text = data;
@@ -37,7 +37,7 @@ class UserPromptsButton extends StatelessWidget {
       onTap: () {
         WeeShow.bluredDialog(
           context: context,
-          child: PromptsCollectionsView(
+          child: PromptView(
             type: 2,
             onSelect: (data) {
               InputVm.find.textEditingController.text = data;
