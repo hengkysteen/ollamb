@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:ollamax/ollamax.dart' as http;
+import 'package:ollamb/src/features/prompts/data/default.dart';
 import 'package:ollamb/src/features/prompts/data/prompt_model.dart';
 import 'package:ollamb/src/features/prompts/data/prompt_storage.dart';
 
@@ -7,19 +6,16 @@ class PromtpRepository {
   final PromptStorage _storage;
   PromtpRepository(this._storage);
 
-  Future<List<Prompt>> getFromRemote() async {
+  Future<List<Prompt>> getMoreDefaultPrompts() async {
     try {
-      final response = await http.get(Uri.parse("http://127.0.0.1:8080/prompts.json"));
-      final List data = json.decode(response.body);
-
-      return List.generate(data.length, (index) {
-        int id = index + 4;
+      return List.generate(default2Prompts.length, (index) {
+        int id = index + 2;
         id++;
         return Prompt(
           id: 'default_$id',
-          type: data[index]['type'],
-          name: data[index]['name'],
-          prompt: data[index]['prompt'],
+          type: default2Prompts[index]['type'],
+          name: default2Prompts[index]['name'],
+          prompt: default2Prompts[index]['prompt'],
         );
       });
     } catch (e) {

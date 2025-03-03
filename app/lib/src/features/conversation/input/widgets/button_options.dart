@@ -15,16 +15,20 @@ class OptionsButton extends StatelessWidget {
     return GetBuilder<ModelOptionsVm>(
       init: ModelOptionsVm(),
       builder: (vm) {
-        return CupertinoButton(
-          padding: EdgeInsets.zero,
-          borderRadius: BorderRadius.circular(10),
-          onPressed: model == null ? null : () => onTap(context),
-          child: Badge(
-            isLabelVisible: vm.isActivate ? true : false,
-            child: Icon(
-              CupertinoIcons.slider_horizontal_3,
-              size: 22,
-              color: model == null ? null : Theme.of(context).textTheme.bodyLarge!.color,
+        return Tooltip(
+          message: "Model Options",
+          preferBelow: false,
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            borderRadius: BorderRadius.circular(10),
+            onPressed: model == null ? null : () => onTap(context),
+            child: Badge(
+              isLabelVisible: vm.isActivate ? true : false,
+              child: Icon(
+                CupertinoIcons.slider_horizontal_3,
+                size: 22,
+                color: model == null ? null : Theme.of(context).textTheme.bodyLarge!.color,
+              ),
             ),
           ),
         );

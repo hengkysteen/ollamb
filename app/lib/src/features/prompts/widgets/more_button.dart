@@ -15,7 +15,7 @@ class MoreButton extends StatelessWidget {
       itemBuilder: (context) {
         return [
           PopupMenuItem(
-            child: const Text("Add From Resource"),
+            child: const Text("Add Default"),
             onTap: () async {
               WeeShow.loadingOverlay(context, loadingText: "Fetch from github ...");
               await _promptsVm.install(

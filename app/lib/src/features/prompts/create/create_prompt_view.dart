@@ -81,7 +81,7 @@ class CreatePromptView extends StatelessWidget {
                   await vm.create();
                   if (!context.mounted) return;
                   WeeShow.loadingOverlay(context);
-                  await Future.delayed(const Duration(seconds: 1));
+                  await Future.delayed(const Duration(milliseconds: 300));
                   if (!context.mounted) return;
                   Navigator.pop(context);
                   vm.reset();

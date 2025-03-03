@@ -49,7 +49,7 @@ class PromptView extends StatelessWidget {
                       ? PopupMenuButton(
                           icon: const Icon(Icons.more_vert),
                           itemBuilder: (context) {
-                            final enable = prompt.id != "default_1" && prompt.id != "default_2" && prompt.id != "default_3" && prompt.id != "default_4";
+                            final enable = prompt.id != "default_1" && prompt.id != "default_2";
                             return [
                               PopupMenuItem(
                                 enabled: enable,

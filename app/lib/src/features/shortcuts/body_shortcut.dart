@@ -67,7 +67,6 @@ class BodyShortcut {
               WeeShow.bluredDialog(context: context, child: const ModelOptionsView());
             },
           ),
-          // USER PROMPTS KEYBOARD SHORTCUT TODO @features/prompts
           // SHIFT LEFT + F = SHOW PROMPTS
           _shortcuts.holdShiftLeft(
             key: LogicalKeyboardKey.keyF,

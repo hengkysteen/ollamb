@@ -10,7 +10,6 @@ class PromptsVm extends GetxController {
 
   List<Prompt> promptsList = [...defaultPrompts.map((e) => Prompt.fromJson(e))];
   List<Prompt> prompts = [];
-
   int activeFilter = 0;
   int selectedItem = 0;
 
@@ -28,15 +27,14 @@ class PromptsVm extends GetxController {
   }
 
   void filter(int type) {
-    activeFilter = type;
     selectedItem = 0;
-    if (activeFilter == 0) {
+    if (type == 0) {
       prompts = promptsList;
     }
-    if (activeFilter == 1) {
+    if (type == 1) {
       prompts = promptsList.where((e) => e.type == "system").toList();
     }
-    if (activeFilter == 2) {
+    if (type == 2) {
       prompts = promptsList.where((e) => e.type == "user").toList();
     }
     prompts.sort((e1, e2) => e1.name.compareTo(e2.name));
@@ -45,8 +43,8 @@ class PromptsVm extends GetxController {
 
   Future<void> install({required void Function() onSuccess, required void Function(String) onError}) async {
     try {
-      await Future.delayed(const Duration(milliseconds: 500));
-      final data = await _repository.getFromRemote();
+      await Future.delayed(const Duration(milliseconds: 300));
+      final data = await _repository.getMoreDefaultPrompts();
       _repository.addAll(data);
       getPrompt();
       filter(type);
@@ -76,6 +74,7 @@ class PromptsVm extends GetxController {
   Future<void> getPrompt() async {
     clear();
     promptsList.addAll(await _repository.getPrompts());
+    update();
     filter(type);
   }
 

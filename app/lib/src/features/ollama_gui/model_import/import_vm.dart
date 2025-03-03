@@ -70,7 +70,6 @@ class OllamaGuiModelImportVm extends GetxController {
       await _ollamaRepository.createModel(request);
       reset();
     } catch (e) {
-      print("ERRRO $e");
       rethrow;
     }
   }

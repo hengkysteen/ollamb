@@ -100,6 +100,9 @@ class MetaItem extends StatelessWidget {
           data,
           (action, meta) async {
             if (action == "RENAME") {
+              if (isCollapsed) {
+                Core.layout.toggleCollapse();
+              }
               vm.setRenameTitle(meta.id);
               Future.delayed(const Duration(milliseconds: 100), () {
                 Core.bodyNode.unfocus();

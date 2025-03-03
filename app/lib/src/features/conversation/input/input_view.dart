@@ -61,8 +61,7 @@ class InputView extends StatelessWidget {
                           ],
                         ),
                   const VerticalDivider(width: 0, endIndent: 10, indent: 10),
-                  // USER PROMPTS BUTTON TODO @features/prompts
-                  const UserPromptsButton()
+                  const UserPromptsButton(),
                 ],
               ),
               const Align(alignment: Alignment.centerRight, child: ShortcutsInfo())

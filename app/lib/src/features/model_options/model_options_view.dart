@@ -370,7 +370,6 @@ class ModelOptionsView extends StatelessWidget {
                             alignment: Alignment.bottomRight,
                             child: Container(
                               padding: const EdgeInsets.all(10.0),
-                              // SYSTEM PROMPTS BUTTON TODO @features/prompts
                               child: const SystemPromptsButton(),
                             ),
                           )

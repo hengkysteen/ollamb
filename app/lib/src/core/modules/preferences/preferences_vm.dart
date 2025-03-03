@@ -10,7 +10,7 @@ class PreferencesVm extends GetxController {
   Preferences settings = Preferences(
     themeMode: 0,
     themeColor: Colors.blue,
-    codeSyntaxTheme: 'atom-one-light',
+    codeSyntaxTheme: 'atom-one-dark',
     responseFormat: "Markdown",
     useLatex: true,
     textScaleFactor: 1.0,
