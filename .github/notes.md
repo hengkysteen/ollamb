@@ -1,1 +1,2 @@
-### Initial Release
+* New Feature - Prompt Collections
+* Bug fixes and improvements
