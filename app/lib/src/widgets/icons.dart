@@ -33,6 +33,8 @@ class IconsPng {
   static String mistral = "assets/models/mistral.png";
   static String granite = "assets/models/granite.png";
   static String deepseek = "assets/models/deep-seek.png";
+  static String microsoft = "assets/models/microsoft.png";
+  static String gemma = "assets/models/gemma.png";
   static String logoBlack = "assets/logo/logo-black.png";
   static String logoWhite = "assets/logo/logo-white.png";
 }

@@ -25,6 +25,10 @@ class ModelStyle {
         return ModelStyle(Colors.green, IconsPng.granite);
       case 'deepseek':
         return ModelStyle(Colors.blue, IconsPng.deepseek);
+      case 'phi':
+        return ModelStyle(null, IconsPng.microsoft);
+      case 'gemma':
+        return ModelStyle(null, IconsPng.gemma);
       default:
         return ModelStyle(null, IconsPng.ollama);
     }
