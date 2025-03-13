@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ollamb/src/features/prompts/create/create_prompt_view.dart';
 import 'package:ollamb/src/features/prompts/prompts_vm.dart';
 import 'package:ollamb/src/widgets/show_modal.dart';
 import 'package:wee_kit/wee_kit.dart';
@@ -14,6 +15,12 @@ class MoreButton extends StatelessWidget {
       icon: const Icon(Icons.more_vert),
       itemBuilder: (context) {
         return [
+          PopupMenuItem(
+            child: Text("Create"),
+            onTap: () {
+              WeeShow.bluredDialog(context: context, child: CreatePromptView(type: 1, onCreated: _promptsVm.getPrompt));
+            },
+          ),
           PopupMenuItem(
             child: const Text("Add Default"),
             onTap: () async {

@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ollamb/src/core/core.dart';
+import 'package:ollamb/src/core/dm.dart';
 import 'package:ollamb/src/core/modules/conversation/view_models/conversation_vm.dart';
+import 'package:ollamb/src/features/ollama_gui/ollama_gui_view.dart';
 import 'package:ollamb/src/ui/widgets/desktop_layout/controller.dart';
 import 'package:ollamb/src/features/conversation/meta/meta_view.dart';
 import 'package:ollamb/src/widgets/circle_button.dart';
+import 'package:ollamb/src/widgets/icons.dart';
 import 'package:wee_kit/wee_kit.dart';
 
 import 'app_logo.dart';
@@ -55,10 +58,18 @@ class DesktopSidebar extends StatelessWidget {
         ),
         ListTile(
           contentPadding: const EdgeInsets.only(left: 22),
-          leading: const Icon(CupertinoIcons.app),
-          title: controller.isCollapsed ? null : const Text("Menus"),
+          leading: IconPng(icon: IconsPng.ollama),
+          title: controller.isCollapsed ? null : const Text("Ollama"),
           onTap: () async {
-            WeeShow.bluredDialog(context: context, maxWidth: 700, child: Core.menusPage);
+            WeeShow.bluredDialog(context: context, child: OllamaGuiView(ollamaModule: DM.ollamaModule));
+          },
+        ),
+        ListTile(
+          contentPadding: const EdgeInsets.only(left: 22),
+          leading: const Icon(CupertinoIcons.settings),
+          title: controller.isCollapsed ? null : const Text("Settings"),
+          onTap: () async {
+            WeeShow.bluredDialog(context: context, child: Core.menusPage);
           },
         ),
       ],

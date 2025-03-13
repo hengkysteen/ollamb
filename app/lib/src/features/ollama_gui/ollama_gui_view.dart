@@ -7,6 +7,7 @@ import 'package:ollamb/src/features/ollama_gui/ollama_gui_vm.dart';
 import 'package:ollamb/src/features/ollama_gui/add_server/add_server_view.dart';
 import 'package:ollamb/src/features/ollama_gui/widgets/model_list.dart';
 import 'package:ollamb/src/widgets/model_icon.dart';
+import 'package:ollamb/src/widgets/page_dialog.dart';
 import 'package:ollamb/src/widgets/style.dart';
 
 class OllamaGuiView extends StatelessWidget {
@@ -105,24 +106,24 @@ class OllamaGuiView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OllamaGuiVm>(
-      init: OllamaGuiVm(),
-      builder: (controller) {
-        return Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
+    return PageDialog(
+      title: "Ollama",
+      contentPadding: 32,
+      child: GetBuilder<OllamaGuiVm>(
+        init: OllamaGuiVm(),
+        builder: (controller) {
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              pageTitle("OLLAMA"),
               const SizedBox(height: 16),
               _widgetServers(context, controller),
               Expanded(
                 child: OllamaGuiModelList(ollamaRepository: ollamaModule.repository),
               ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

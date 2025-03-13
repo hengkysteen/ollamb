@@ -12,7 +12,7 @@ class SystemPromptsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       preferBelow: false,
-      message: "Prompt Collections",
+      message: "Prompts",
       child: IconButton(
         onPressed: () {
           WeeShow.bluredDialog(
@@ -39,7 +39,7 @@ class UserPromptsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       preferBelow: false,
-      message: "Prompt Collections",
+      message: "Prompts",
       child: InkWell(
         onTap: () {
           WeeShow.bluredDialog(
