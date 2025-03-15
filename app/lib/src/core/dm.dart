@@ -6,6 +6,8 @@ import 'package:ollamb/src/core/modules/preferences/preferences_module.dart';
 import 'package:ollamb/src/core/modules/conversation/data/conversation_repository.dart';
 import 'package:ollamb/src/core/modules/conversation/data/conversation_storage.dart';
 import 'package:ollamb/src/core/modules/conversation/view_models/conversation_vm.dart';
+import 'package:ollamb/src/features/vectorize/data/vectorize_storage.dart';
+import 'package:ollamb/src/features/vectorize/vectorize_vm.dart';
 import 'package:ollamb/src/features/prompts/data/prompt_storage.dart';
 
 class DM {
@@ -39,6 +41,11 @@ class DM {
       // PROMPTS SETUP
       promptStorage = PromptStorage(Core.fileService);
       await promptStorage.init();
+
+      // VECTORIZE SETUP
+      final vectorStorage = VectorizeStorage(Core.fileService);
+      await vectorStorage.init();
+      Get.put(VectorizeVm(ollamaModule.ollamax, vectorStorage));
     } catch (e) {
       // ERRROR
     }

@@ -7,6 +7,7 @@ import 'package:ollamb/src/features/conversation/input/input_vm.dart';
 import 'package:ollamb/src/features/model_list/model_list_view.dart';
 import 'package:ollamb/src/features/model_options/model_options_view.dart';
 import 'package:ollamb/src/features/prompts/prompt_view.dart';
+import 'package:ollamb/src/features/vectorize/vectorize_view.dart';
 import 'package:ollamb/src/services/keyboard_shortcuts.dart';
 import 'package:wee_kit/wee_kit.dart';
 
@@ -82,6 +83,14 @@ class BodyShortcut {
                   },
                 ),
               );
+            },
+          ),
+          // SHIFT LEFT + F = SHOW PROMPTS
+          _shortcuts.holdShiftLeft(
+            key: LogicalKeyboardKey.keyV,
+            event: event,
+            callback: () {
+              WeeShow.bluredDialog(context: context, child: const VectorizeView());
             },
           ),
         ],

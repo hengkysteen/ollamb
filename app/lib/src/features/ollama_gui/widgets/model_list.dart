@@ -68,18 +68,25 @@ class OllamaGuiModelList extends StatelessWidget {
     );
   }
 
-  bool isVersionGreater(String? current, String target) {
-    if (current == null) return false;
+   bool isVersionGreater(String? current, String target) {
+  if (current == null || current.isEmpty) return false;
 
+  try {
     List<int> currentParts = current.split('.').map(int.parse).toList();
     List<int> targetParts = target.split('.').map(int.parse).toList();
 
     for (int i = 0; i < 3; i++) {
-      if (currentParts[i] > targetParts[i]) return true;
-      if (currentParts[i] < targetParts[i]) return false;
+      int cur = (i < currentParts.length) ? currentParts[i] : 0;
+      int tar = (i < targetParts.length) ? targetParts[i] : 0;
+      if (cur > tar) return true;
+      if (cur < tar) return false;
     }
+  } catch (e) {
     return false;
   }
+
+  return false;
+}
 
   Widget _widgetTitle(BuildContext context, OllamaGuiVm vm) {
     return Row(

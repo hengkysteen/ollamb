@@ -34,13 +34,13 @@ class PromptView extends StatelessWidget {
                   onLongPress: prompt.id != "default_1" && prompt.id != "default_2"
                       ? null
                       : () {
-                          showNotif(context: context, title: "Delete", content: SizedBox(), actions: [
+                          showNotif(context: context, title: "Delete", content: const SizedBox(), actions: [
                             IconButton(
                               onPressed: () async {
                                 Navigator.pop(context);
                                 await vm.delete(prompt.id);
                               },
-                              icon: Text("Delete"),
+                              icon: const Text("Delete"),
                             )
                           ]);
                         },
@@ -78,51 +78,46 @@ class PromptView extends StatelessWidget {
       return const Center(child: Text("No prompts"));
     }
     return Expanded(
-      child: Container(
-        // padding: EdgeInsets.all(4),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(color: schemeColor(context).surfaceContainerHigh, borderRadius: BorderRadius.circular(16)),
-                child: SelectionArea(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(16),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(vm.prompts[vm.selectedItem].name, style: textBold.copyWith(fontSize: 18)),
-                          const SizedBox(height: 5),
-                          Text(vm.prompts[vm.selectedItem].prompt, style: textStyle.copyWith(fontSize: 16)),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                    ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(color: schemeColor(context).surfaceContainerHigh, borderRadius: BorderRadius.circular(16)),
+              child: SelectionArea(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(vm.prompts[vm.selectedItem].name, style: textBold.copyWith(fontSize: 18)),
+                      const SizedBox(height: 5),
+                      Text(vm.prompts[vm.selectedItem].prompt, style: textStyle.copyWith(fontSize: 16)),
+                      const SizedBox(height: 20),
+                    ],
                   ),
                 ),
               ),
             ),
-            if (vm.isValid)
-              Container(
-                margin: const EdgeInsets.only(top: 16),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: schemeColor(context).primary.withAlpha(50),
-                    foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
-                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    padding: const EdgeInsets.all(16),
-                  ),
-                  child: const Text("Select"),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    onSelect(vm.prompts[vm.selectedItem].prompt);
-                  },
+          ),
+          if (vm.isValid)
+            Container(
+              margin: const EdgeInsets.only(top: 16),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: schemeColor(context).primary.withAlpha(50),
+                  foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                  padding: const EdgeInsets.all(16),
                 ),
+                child: const Text("Select"),
+                onPressed: () {
+                  Navigator.pop(context);
+                  onSelect(vm.prompts[vm.selectedItem].prompt);
+                },
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }

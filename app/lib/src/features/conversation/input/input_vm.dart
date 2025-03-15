@@ -7,6 +7,8 @@ import 'package:ollamb/src/core/modules/conversation/view_models/conversation_vm
 import 'package:ollamb/src/core/modules/ollama/ollama_vm.dart';
 import 'package:ollamb/src/features/model_options/model_options_vm.dart';
 
+import '../../vectorize/data/vectorize_model.dart';
+
 class InputVm extends GetxController {
   final OllamaVm ollamaVm;
 
@@ -19,6 +21,9 @@ class InputVm extends GetxController {
   /// Image attachment
   String? image;
 
+  /// Vector attachment
+  VectorizeAttachment? vector;
+
   final FocusNode inputFocusNode = FocusNode(
     onKeyEvent: (node, event) {
       return Core.keyboard.prosesWithResult(
@@ -28,6 +33,11 @@ class InputVm extends GetxController {
       );
     },
   );
+
+  void setVector(VectorizeAttachment? document) {
+    vector = document;
+    update();
+  }
 
   void setDocument(Map<String, dynamic>? data) {
     document = data;
@@ -43,7 +53,7 @@ class InputVm extends GetxController {
     ConversationVm.find.stopMessage();
   }
 
-  void send() {
+  void send() async {
     if (ConversationVm.find.message != null) {
       stop();
     }
@@ -54,6 +64,7 @@ class InputVm extends GetxController {
 
     final Map<String, dynamic>? documentPrompt = document;
     final String? imagePrompt = image;
+
     setImage(null);
     setDocument(null);
 
@@ -73,6 +84,7 @@ class InputVm extends GetxController {
       system: system,
       options: options,
       keepAlive: keepAlive,
+      vector: vector,
       onConversationCreate: (c) {
         if (Core.platform.isMobile) return;
         Core.layout.changeTab(0, data: c.id);

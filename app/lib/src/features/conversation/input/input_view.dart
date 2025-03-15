@@ -7,6 +7,7 @@ import 'package:ollamb/src/core/modules/ollama/ollama_vm.dart';
 import 'package:ollamb/src/core/modules/preferences/preferences_vm.dart';
 import 'package:ollamb/src/features/conversation/input/input_vm.dart';
 import 'package:ollamb/src/features/conversation/input/widgets/shortcuts_info.dart';
+import 'package:ollamb/src/features/vectorize/widgets/vectorize_button.dart';
 import 'package:ollamb/src/features/model_list/model_list_view.dart';
 import 'package:ollamb/src/features/prompts/widgets/prompts_button.dart';
 import 'package:ollamb/src/widgets/model_icon.dart';
@@ -62,6 +63,8 @@ class InputView extends StatelessWidget {
                         ),
                   const VerticalDivider(width: 0, endIndent: 10, indent: 10),
                   const UserPromptsButton(),
+                  const VerticalDivider(width: 0, endIndent: 10, indent: 10),
+                  VectorizeButton(InputVm.find),
                 ],
               ),
               const Align(alignment: Alignment.centerRight, child: ShortcutsInfo())

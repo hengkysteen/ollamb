@@ -41,7 +41,7 @@ class PageDialog extends StatelessWidget {
                           child: Row(
                             children: [
                               const Spacer(),
-                              IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.close)),
+                              IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.close)),
                             ],
                           ),
                         )

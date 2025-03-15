@@ -8,6 +8,7 @@ class Message {
   OllamaxChatResponse? response;
   String content;
   bool isDone;
+  Map<String, dynamic>? data;
 
   Message({
     required this.id,
@@ -17,6 +18,7 @@ class Message {
     required this.content,
     this.isDone = false,
     required this.conversationId,
+    this.data,
   });
 
   Map<String, dynamic> toJson() {
@@ -28,6 +30,7 @@ class Message {
       'content': content,
       'is_done': isDone,
       'conversation_id': conversationId,
+       'data': data
     };
   }
 
@@ -40,6 +43,7 @@ class Message {
       content: json['content'],
       isDone: json['is_done'],
       conversationId: json['conversation_id'],
+      data: json['data'],
     );
   }
 }
@@ -67,15 +71,22 @@ class MessageHistory {
   final String conversationId;
   final String messageId;
   final OllamaxMessage message;
+  final String label;
 
   MessageHistory({
     required this.conversationId,
     required this.messageId,
     required this.message,
+    this.label = "",
   });
 
   Map<String, dynamic> toJson() {
-    return {'conversationId': conversationId, 'messageId': messageId, 'message': message.toJson()};
+    return {
+      'conversationId': conversationId,
+      'messageId': messageId,
+      'message': message.toJson(),
+      'label': label,
+    };
   }
 
   factory MessageHistory.fromJson(Map<String, dynamic> json) {
@@ -83,6 +94,7 @@ class MessageHistory {
       conversationId: json['conversationId'],
       messageId: json['messageId'],
       message: OllamaxMessage.fromJson(json['message']),
+      label: json['label'],
     );
   }
 }

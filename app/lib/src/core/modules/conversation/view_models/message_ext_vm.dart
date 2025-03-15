@@ -1,18 +1,42 @@
 part of 'conversation_vm.dart';
 
 extension ConversationMessageVm on ConversationVm {
-
-  
   Message _createMessage(Prompt prompt, String model) {
-    final data = Message(conversationId: conversation!.id, id: generateId, prompt: prompt, model: model, content: "");
+    final data = Message(
+      conversationId: conversation!.id,
+      id: generateId,
+      prompt: prompt,
+      model: model,
+      content: "",
+      data: {'vector': null},
+    );
     conversation!.messages.add(data);
     update();
     return conversation!.messages.firstWhere((e) => e.id == data.id);
   }
 
-  List<MessageHistory> _getMessageHistories(Prompt prompt, {String? system}) {
+  List<MessageHistory> _getMessageHistories(Prompt prompt, {String? system, VectorizeResult? vector}) {
     final data = OllamaxMessage(role: 'user', content: prompt.text, images: prompt.image == null ? null : [prompt.image!]);
-    final List<MessageHistory> histories = [MessageHistory(messageId: message!.id, conversationId: conversation!.id, message: data)];
+    final List<MessageHistory> histories = [
+      MessageHistory(messageId: message!.id, conversationId: conversation!.id, message: data),
+    ];
+
+    if (vector != null && vector.similarities.isNotEmpty) {
+      final vectorDoc = MessageHistory(
+        messageId: message!.id,
+        conversationId: conversation!.id,
+        label: "vector",
+        message: OllamaxMessage(role: 'user', content: """
+Please use this information only if related to my next question.
+
+Information:
+${vector.similarities.map((e) => e.chunk).join('\n')}
+
+"""),
+      );
+
+      histories.insert(0, vectorDoc);
+    }
 
     if (prompt.document != null) {
       final data = OllamaxMessage(role: 'user', content: documentTemplate(prompt.document!['name'], prompt.document!['content']));
@@ -40,6 +64,7 @@ extension ConversationMessageVm on ConversationVm {
     String model, {
     String? system,
     OllamaxOptions? options,
+    VectorizeAttachment? vector,
     String? keepAlive,
     void Function(Conversation data)? onConversationCreate,
   }) async {
@@ -50,9 +75,23 @@ extension ConversationMessageVm on ConversationVm {
     }
 
     onConversationCreate?.call(conversation!);
+
     isMessageStart = true;
+
     message = _createMessage(prompt, model);
-    final userPrompt = _getMessageHistories(prompt, system: system);
+
+    if (vector != null) {
+      final query = await VectorizeVm.find.embedQuery(vector.document.model, prompt.text);
+      vectorResult = VectorizeVm.find.searchSimilarity(
+        model: vector.document.model,
+        input: Vectorize(id: "", text: prompt.text, vector: query),
+        document: vector.document,
+        range: (vector.range.toInt()),
+        threshold: vector.treshold,
+      );
+    }
+
+    final userPrompt = _getMessageHistories(prompt, system: system, vector: vectorResult);
     conversation!.histories.addAll(userPrompt);
     update();
 
@@ -127,13 +166,22 @@ extension ConversationMessageVm on ConversationVm {
         ConversationVm.find.updateConversationTitle(id, title);
         await ConversationVm.find.save(updateConversation);
       });
+      if (vectorResult != null) {
+        conversation!.messages.firstWhere((e) => e.id == message!.id).data!['vector'] = vectorResult!.toJson();
+        vectorResult = null;
+      }
       message = null;
-
+      conversation!.histories.removeWhere((e) => e.label == "vector");
       update();
       return;
     }
 
+    if (vectorResult != null) {
+      conversation!.messages.firstWhere((e) => e.id == message!.id).data!['vector'] = vectorResult!.toJson();
+      vectorResult = null;
+    }
     message = null;
+    conversation!.histories.removeWhere((e) => e.label == "vector");
     update();
     ConversationVm.find.save(updateConversation);
   }

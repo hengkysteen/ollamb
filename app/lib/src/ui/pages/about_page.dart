@@ -23,26 +23,20 @@ class AboutPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const Text("hengkysteen@gmail.com"),
-              const SizedBox(height: 10),
-              const Text(
-                "Links:",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              const SizedBox(height: 20),
+              const Text("Links:", style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 6),
               InkWell(
                 onTap: () => launchUrlString("https://github.com/hengkysteen/ollamb"),
-                child: const Text(
-                  "GitHub Repository",
-                  style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
-                ),
+                child: const Text("GitHub Repository", style: TextStyle(color: Colors.blue)),
               ),
               const SizedBox(height: 6),
               InkWell(
                 onTap: () => launchUrlString("https://github.com/hengkysteen/ollamb/issues"),
-                child: const Text(
-                  "Report Issues",
-                  style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
-                ),
+                child: const Text("Report Issues", style: TextStyle(color: Colors.blue)),
               ),
+              const SizedBox(height: 6),
+              const InkWell(onTap: null, child: Text("FAQ - (Soon)")),
             ],
           ),
         ),

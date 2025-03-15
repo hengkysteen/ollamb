@@ -85,8 +85,8 @@ class ModelOptionsView extends StatelessWidget {
           title: "Model Options",
           closeButton: false,
           titleActions: [
-            Spacer(),
-            IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.close)),
+            const Spacer(),
+            IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.close)),
           ],
           contentPadding: 6,
           child: Row(
@@ -99,7 +99,7 @@ class ModelOptionsView extends StatelessWidget {
                       child: Column(
                         children: [
                           ListTile(
-                            contentPadding: EdgeInsets.only(left: 22, right: 10),
+                            contentPadding: const EdgeInsets.only(left: 22, right: 10),
                             title: const Text("Parameters"),
                             subtitle: Text.rich(
                               style: const TextStyle(fontSize: 12, color: Colors.grey),

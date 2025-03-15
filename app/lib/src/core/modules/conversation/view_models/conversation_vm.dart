@@ -4,6 +4,8 @@ import 'package:ollamax/ollamax.dart';
 import 'package:ollamb/src/core/modules/ollama/ollama_repository.dart';
 import 'package:ollamb/src/core/modules/conversation/models/conversation.dart';
 import 'package:ollamb/src/core/modules/conversation/data/conversation_repository.dart';
+import 'package:ollamb/src/features/vectorize/data/vectorize_model.dart';
+import 'package:ollamb/src/features/vectorize/vectorize_vm.dart';
 import '../models/message.dart';
 part 'message_ext_vm.dart';
 
@@ -37,6 +39,8 @@ class ConversationVm extends GetxController {
   Message get lastMessage => messages.first;
 
   String get generateId => DateTime.now().millisecondsSinceEpoch.toString();
+
+     VectorizeResult? vectorResult;
 
   void setConversation(Conversation? data) {
     if (message == null) {

@@ -16,7 +16,7 @@ class MoreButton extends StatelessWidget {
       itemBuilder: (context) {
         return [
           PopupMenuItem(
-            child: Text("Create"),
+            child: const Text("Create"),
             onTap: () {
               WeeShow.bluredDialog(context: context, child: CreatePromptView(type: 1, onCreated: _promptsVm.getPrompt));
             },
