@@ -48,10 +48,10 @@ class CreateDocumentVector extends StatelessWidget {
           PopupMenuItem(
             child: const Text("Example"),
             onTap: () {
+              vm.reset();
               vm.titleCtrl.text = defaultVectorize['title'];
-              vm.chunks.addAll( defaultVectorize['chunks']);
+              vm.chunks.addAll(defaultVectorize['chunks']);
               vm.update();
-
             },
           ),
         ];

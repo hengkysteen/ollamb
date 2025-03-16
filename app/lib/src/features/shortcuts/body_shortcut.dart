@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ollamb/src/core/core.dart';
+import 'package:ollamb/src/core/dm.dart';
 import 'package:ollamb/src/core/modules/conversation/view_models/conversation_vm.dart';
 import 'package:ollamb/src/core/modules/ollama/ollama_vm.dart';
 import 'package:ollamb/src/features/conversation/input/input_vm.dart';
 import 'package:ollamb/src/features/model_list/model_list_view.dart';
 import 'package:ollamb/src/features/model_options/model_options_view.dart';
+import 'package:ollamb/src/features/ollama_gui/ollama_gui_view.dart';
 import 'package:ollamb/src/features/prompts/prompt_view.dart';
 import 'package:ollamb/src/features/vectorize/vectorize_view.dart';
 import 'package:ollamb/src/services/keyboard_shortcuts.dart';
@@ -20,7 +22,6 @@ class BodyShortcut {
     return (node, event) {
       // Ignore when another focus active
       if (FocusManager.instance.primaryFocus != Core.bodyNode) return KeyEventResult.ignored;
-
       return _shortcuts.prosesWithResult(
         [
           // SHIFT LEFT + RIGHT OR LEFT  = TOGGLE SIDEBAR
@@ -91,6 +92,14 @@ class BodyShortcut {
             event: event,
             callback: () {
               WeeShow.bluredDialog(context: context, child: const VectorizeView());
+            },
+          ),
+          // SHIFT LEFT + W = SHOW OLLAMA
+          _shortcuts.holdShiftLeft(
+            key: LogicalKeyboardKey.keyW,
+            event: event,
+            callback: () {
+              WeeShow.bluredDialog(context: context, child: OllamaGuiView(ollamaModule: DM.ollamaModule));
             },
           ),
         ],

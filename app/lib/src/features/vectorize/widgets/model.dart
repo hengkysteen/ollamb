@@ -10,14 +10,17 @@ class EmbeddingsModels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dropdown<String?>(
-      underline: false,
+      // underline: false,
       isExpanded: true,
       isDense: true,
       value: vm.model,
       items: OllamaVm.find.server.models
-          .map(
-            (e) => DropdownMenuItem(value: e.name, child: Text(e.name.toUpperCase(), maxLines: 1)),
-          )
+          .map((e) => DropdownMenuItem(
+              value: e.name,
+              child: Text(
+                e.name.toUpperCase(),
+                maxLines: 1,
+              )))
           .toList(),
       onChanged: (v) {
         vm.model = v!;

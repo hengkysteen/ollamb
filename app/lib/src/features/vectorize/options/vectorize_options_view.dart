@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:ollamb/src/features/vectorize/options/vectorize_options_vm.dart';
 
-class VectorizeOptions extends StatelessWidget {
+class VectorizeOptionsView extends StatelessWidget {
   final void Function(int chunkRange, double threshold) onDone;
   final int? initRange;
   final double? initThreshold;
   final String onDoneText;
-  const VectorizeOptions({
+  const VectorizeOptionsView({
     super.key,
     required this.onDone,
     this.initRange,

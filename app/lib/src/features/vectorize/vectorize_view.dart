@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ollamb/src/features/conversation/input/input_vm.dart';
 import 'package:ollamb/src/features/vectorize/data/vectorize_model.dart';
 import 'package:ollamb/src/features/vectorize/create/create_view.dart';
+import 'package:ollamb/src/features/vectorize/options/vectorize_options_view.dart';
 import 'package:ollamb/src/features/vectorize/vectorize_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:ollamb/src/widgets/page_dialog.dart';
@@ -13,75 +14,6 @@ import 'detail/detail_view.dart';
 
 class VectorizeView extends StatelessWidget {
   const VectorizeView({super.key});
-
-  Widget _widgetOptions(BuildContext context, VectorizeVm vms, VectorizeDocument document) {
-    return GetBuilder<VectorizeVm>(
-      dispose: (state) => state.controller?.resetOptions(),
-      builder: (vm) {
-        return AlertDialog(
-          title: const Text("Vectorize Options"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 120,
-                    child: Text(
-                      "Range : ${vm.chunkRange.toString()} ",
-                    ),
-                  ),
-                  SizedBox(
-                    width: 180,
-                    child: Slider(
-                      value: vm.chunkRange.toDouble(),
-                      min: 1,
-                      max: 6,
-                      divisions: 5,
-                      onChanged: (value) {
-                        vm.updateOptions(chunkRange: value.toInt());
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(width: 120, child: Text("Treshold : ${vm.threshold}")),
-                  SizedBox(
-                    width: 180,
-                    child: Slider(
-                      value: vm.threshold,
-                      min: 0.5,
-                      max: 0.9,
-                      divisions: 4,
-                      onChanged: (value) {
-                        vm.updateOptions(threshold: value);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                InputVm.find.setVector(VectorizeAttachment(document: document, range: vm.chunkRange, treshold: vm.threshold));
-                vm.update();
-                Future.delayed(const Duration(milliseconds: 200), () {
-                  vm.resetOptions();
-                });
-              },
-              child: const Text("Activate"),
-            )
-          ],
-        );
-      },
-    );
-  }
 
   Widget _widgetDocumentListMenus(BuildContext context, VectorizeVm vm, VectorizeDocument document) {
     return SizedBox(
@@ -96,7 +28,20 @@ class VectorizeView extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          return _widgetOptions(context, vm, document);
+                          return VectorizeOptionsView(
+                            initRange: vm.chunkRange,
+                            initThreshold: vm.threshold,
+                            onDoneText: "Save",
+                            onDone: (chunkRange, threshold) {
+                              vm.updateOptions(chunkRange: chunkRange, threshold: threshold);
+
+                              InputVm.find.setVector(VectorizeAttachment(document: document, range: vm.chunkRange, treshold: vm.threshold));
+                              vm.update();
+                              Future.delayed(const Duration(milliseconds: 200), () {
+                                vm.resetOptions();
+                              });
+                            },
+                          );
                         },
                       );
                     },
@@ -136,6 +81,7 @@ class VectorizeView extends StatelessWidget {
                       if (document.id == InputVm.find.vector?.document.id) {
                         InputVm.find.setVector(null);
                       }
+                      if (!context.mounted) return;
                       Navigator.pop(context);
                     },
                     child: const Text("Delete"),
@@ -147,28 +93,6 @@ class VectorizeView extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _widgetDocumentList(VectorizeVm vm) {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 20),
-      itemCount: vm.documents.length,
-      itemBuilder: (context, index) {
-        final document = vm.documents[index];
-        return ListTile(
-          selected: InputVm.find.vector?.document.id == document.id,
-          selectedTileColor: InputVm.find.vector?.document.id == document.id ? schemeColor(context).primary.withAlpha(20) : null,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-          leading: const Icon(CupertinoIcons.doc_text_search),
-          title: Text(document.title),
-          subtitle: Text(document.model),
-          trailing: _widgetDocumentListMenus(context, vm, document),
-          onTap: () {
-            WeeShow.bluredDialog(context: context, child: DocDetailWidget(document: document, embeddingsVm: vm));
-          },
-        );
-      },
     );
   }
 
@@ -185,7 +109,25 @@ class VectorizeView extends StatelessWidget {
       child: GetBuilder<VectorizeVm>(
         builder: (vm) {
           if (vm.documents.isEmpty) return const Center(child: Text("No Document"));
-          return _widgetDocumentList(vm);
+          return ListView.builder(
+            padding: const EdgeInsets.only(top: 20),
+            itemCount: vm.documents.length,
+            itemBuilder: (context, index) {
+              final document = vm.documents[index];
+              return ListTile(
+                selected: InputVm.find.vector?.document.id == document.id,
+                selectedTileColor: InputVm.find.vector?.document.id == document.id ? schemeColor(context).primary.withAlpha(20) : null,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+                leading: const Icon(CupertinoIcons.doc_text_search),
+                title: Text(document.title),
+                subtitle: Text(document.model),
+                trailing: _widgetDocumentListMenus(context, vm, document),
+                onTap: () {
+                  WeeShow.bluredDialog(context: context, child: DocDetailWidget(document: document, embeddingsVm: vm));
+                },
+              );
+            },
+          );
         },
       ),
     );

@@ -44,23 +44,6 @@ class PromptView extends StatelessWidget {
                             )
                           ]);
                         },
-                  // trailing: vm.selectedItem == index
-                  //     ? PopupMenuButton(
-                  //         icon: const Icon(Icons.more_vert),
-                  //         itemBuilder: (context) {
-                  //           final enable = prompt.id != "default_1" && prompt.id != "default_2";
-                  //           return [
-                  //             PopupMenuItem(
-                  //               enabled: enable,
-                  //               child: const Text("Delete"),1
-                  //               onTap: () async {
-                  //                 await vm.delete(prompt.id);
-                  //               },
-                  //             ),
-                  //           ];
-                  //         },
-                  //       )
-                  //     : null,
                   onTap: () {
                     vm.setSelectedItem(index);
                   },

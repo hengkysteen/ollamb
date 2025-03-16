@@ -14,6 +14,8 @@ LEFT SHIFT + S = Show Menus
 LEFT SHIFT + D = Show Models
 LEFT SHIFT + A = Show Model Options
 LEFT SHIFT + F = Show Prompts
+LEFT SHIFT + W = Show Ollama
+LEFT SHIFT + V = Show Vectorize
 LEFT SHIFT + C = New Conversation
 
 Input Message Focus:

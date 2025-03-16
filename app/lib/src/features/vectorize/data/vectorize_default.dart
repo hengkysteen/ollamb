@@ -1,7 +1,7 @@
 final Map<String, dynamic> defaultVectorize = {
   'title': 'Ollamb',
-  'chunks': [
-    "Ollamb is a simple and easy-to-use Ollama client app. It supports macOS, Linux, and Web. You can download it for free and open-source from GitHub: https://github.com/hengkysteen/ollamb. Don't confuse `Ollama` with `Ollamb`, `Ollamb` is a client app for `Ollama`, while `Ollama` (ollama.com) is just an LLM model server. That's why we built `Ollamb`.",
+  "chunks": [
+    "Ollamb is a simple and user-friendly Ollama client app. It supports macOS, Linux, and Web. You can download it for free and open-source from GitHub: https://github.com/hengkysteen/ollamb. Don’t confuse Ollama with Ollamb—Ollamb is a client app for Ollama, while Ollama (ollama.com) is an LLM model server. That’s why we built Ollamb.",
     """You can try DEMO before download Ollamb app, To use the WEB DEMO:
     - Open the demo URL at https://hengkysteen.github.io/demo/ollamb.  
     - Set the environment variable `OLLAMA_ORIGINS` to the demo URL using the following command:  

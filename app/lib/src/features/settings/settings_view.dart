@@ -10,6 +10,7 @@ import 'package:ollamb/src/widgets/style.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
+
   _buildThemeModeWidget({
     required BuildContext context,
     required bool active,
@@ -57,13 +58,10 @@ class SettingsView extends StatelessWidget {
           child: ScrollConfiguration(
             behavior: const MaterialScrollBehavior().copyWith(scrollbars: false),
             child: ListView(
-              // padding: const EdgeInsets.all(32),
               children: [
-                // pageTitle("Settings"),
                 const SizedBox(height: 25),
                 Text("General", style: textTitle),
                 const SizedBox(height: 10),
-
                 _buildRow(
                   label: "Text Scaler",
                   action: SizedBox(
@@ -80,7 +78,6 @@ class SettingsView extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 _buildRow(
                   label: "Color",
                   action: SizedBox(
@@ -102,7 +99,6 @@ class SettingsView extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 _buildRow(
                   label: "Mode",
                   action: SizedBox(
@@ -181,82 +177,6 @@ class SettingsView extends StatelessWidget {
                     }).toList(),
                   ),
                 ),
-                // TODO
-                // _buildRow(
-                //   label: "Auto Title",
-                //   action: Row(
-                //     mainAxisSize: MainAxisSize.min,
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //     crossAxisAlignment: CrossAxisAlignment.center,
-                //     children: [
-                //       if (vm.isAutoTitle)
-                //         IconButton(
-                //           onPressed: () {
-                //             showDialog(
-                //               context: context,
-                //               builder: (context) {
-                //                 return AlertDialog(
-                //                   title: const Text("Auto Title"),
-                //                   content: SizedBox(
-                //                     width: 500,
-                //                     child: Column(
-                //                       mainAxisSize: MainAxisSize.min,
-                //                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                //                       children: [
-                //                         const Text(
-                //                           "Template",
-                //                         ),
-                //                         const SizedBox(height: 10),
-                //                         TextField(
-                //                           controller: TextEditingController(
-                //                             text: "Please convert the text below into a single, concise title with no more than 5 words. Do not answer or explain anything. ONLY respond with the title in English and do not exceed 5 words.\n\nText:\n\$text",
-                //                           ),
-                //                           maxLines: 9,
-                //                           minLines: 9,
-                //                           decoration: const InputDecoration(filled: true),
-                //                         )
-                //                       ],
-                //                     ),
-                //                   ),
-                //                   actionsAlignment: MainAxisAlignment.spaceBetween,
-                //                   actions: [
-                //                     Row(
-                //                       mainAxisSize: MainAxisSize.min,
-                //                       children: [
-                //                         const Text("Model : "),
-                //                         Dropdown<String>(
-                //                           isDense: true,
-                //                           items: List<String>.from(
-                //                             OllamaVm.find.server.models.map((e) => e.name).toList()..insert(0, "Auto Model"),
-                //                           ).map((e) => DropdownMenuItem(value: e, child: Text(e.toUpperCase()))).toList(),
-                //                           value: vm.modelAutoTitle,
-                //                           onChanged: (v) {
-                //                             vm.setModelAutoTitle(v!);
-                //                           },
-                //                         ),
-                //                       ],
-                //                     ),
-                //                     TextButton(onPressed: () {}, child: const Text("Save")),
-                //                   ],
-                //                 );
-                //               },
-                //             );
-                //           },
-                //           icon: const Icon(Icons.settings),
-                //         ),
-                //       Transform.scale(
-                //         scale: 0.7,
-                //         child: Switch.adaptive(
-                //           applyCupertinoTheme: true,
-                //           value: vm.isAutoTitle,
-                //           onChanged: (v) {
-                //             vm.setIsGenerateTitle(v);
-                //           },
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 if (Core.platform.isMacOS)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -278,11 +198,6 @@ class SettingsView extends StatelessWidget {
                           },
                         ),
                       ),
-                      // TODO
-                      // _buildRow(
-                      //   label: "Default Settings",
-                      //   action: const TextButton(onPressed: null, child: Text("Reset")),
-                      // ),
                     ],
                   ),
               ],

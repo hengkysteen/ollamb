@@ -154,8 +154,8 @@ class DocDetailWidget extends StatelessWidget {
                           onPressed: () {
                             showDialog(
                               context: context,
-                              builder: (context) {
-                                return VectorizeOptions(
+                              builder: (_) {
+                                return VectorizeOptionsView(
                                   initRange: vm.chunkRange,
                                   initThreshold: vm.threshold,
                                   onDoneText: "Save",
