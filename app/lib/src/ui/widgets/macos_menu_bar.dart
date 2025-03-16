@@ -61,7 +61,7 @@ class MacOsMenuBar extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 const Text(
-                  "v0.0.2",
+                  "v0.0.3",
                   style: TextStyle(fontSize: 10, color: Colors.grey),
                 ),
                 const SizedBox(width: 20),

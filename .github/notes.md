@@ -1,2 +1,2 @@
-* New Feature - Prompt Collections
+* New Feature - Vectorize
 * Bug fixes and improvements
