@@ -25,13 +25,15 @@ class PageDialog extends StatelessWidget {
       children: [
         if (title != null && title!.isNotEmpty)
           Container(
-            padding: const EdgeInsets.only(top: 26, left: 26, right: 26),
+            height: 60,
+            padding: const EdgeInsets.only(left: 24, right: 10),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceContainer,
+              border: Border(bottom: BorderSide(color: Theme.of(context).colorScheme.surfaceContainerHighest, width: 0.7)),
+            ),
             child: Row(
               children: [
-                Text(
-                  title!,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
+                Text(title!, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 Expanded(
                   child: Row(
                     children: [

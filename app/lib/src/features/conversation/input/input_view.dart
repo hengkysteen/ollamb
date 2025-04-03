@@ -57,7 +57,7 @@ class InputView extends StatelessWidget {
                       : const Row(
                           children: [
                             SizedBox(width: 6),
-                            Text("No Selected Model", style: TextStyle(color: Colors.grey)),
+                            Text("No Model", style: TextStyle(color: Colors.grey)),
                             SizedBox(width: 20),
                           ],
                         ),

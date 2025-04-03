@@ -18,6 +18,7 @@ import '../model_import/import_view.dart';
 
 class OllamaGuiModelList extends StatelessWidget {
   final OllamaRepository ollamaRepository;
+
   const OllamaGuiModelList({super.key, required this.ollamaRepository});
 
   void onAddModel(BuildContext context, OllamaGuiVm vm) {
@@ -68,25 +69,25 @@ class OllamaGuiModelList extends StatelessWidget {
     );
   }
 
-   bool isVersionGreater(String? current, String target) {
-  if (current == null || current.isEmpty) return false;
+  bool isVersionGreater(String? current, String target) {
+    if (current == null || current.isEmpty) return false;
 
-  try {
-    List<int> currentParts = current.split('.').map(int.parse).toList();
-    List<int> targetParts = target.split('.').map(int.parse).toList();
+    try {
+      List<int> currentParts = current.split('.').map(int.parse).toList();
+      List<int> targetParts = target.split('.').map(int.parse).toList();
 
-    for (int i = 0; i < 3; i++) {
-      int cur = (i < currentParts.length) ? currentParts[i] : 0;
-      int tar = (i < targetParts.length) ? targetParts[i] : 0;
-      if (cur > tar) return true;
-      if (cur < tar) return false;
+      for (int i = 0; i < 3; i++) {
+        int cur = (i < currentParts.length) ? currentParts[i] : 0;
+        int tar = (i < targetParts.length) ? targetParts[i] : 0;
+        if (cur > tar) return true;
+        if (cur < tar) return false;
+      }
+    } catch (e) {
+      return false;
     }
-  } catch (e) {
+
     return false;
   }
-
-  return false;
-}
 
   Widget _widgetTitle(BuildContext context, OllamaGuiVm vm) {
     return Row(

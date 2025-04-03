@@ -16,7 +16,7 @@ class OptionsButton extends StatelessWidget {
       init: ModelOptionsVm(),
       builder: (vm) {
         return Tooltip(
-          message: "Model Options",
+          message: "Options",
           preferBelow: false,
           child: CupertinoButton(
             padding: EdgeInsets.zero,

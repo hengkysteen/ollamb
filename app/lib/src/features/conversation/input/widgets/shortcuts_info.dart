@@ -5,7 +5,7 @@ class ShortcutsInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Tooltip(
+    return Tooltip(
       preferBelow: false,
       message: """
 Body Focus : 
@@ -22,7 +22,11 @@ Input Message Focus:
 LEFT SHIFT + ENTER = Send or Stop Message""",
       child: Padding(
         padding: const EdgeInsets.only(right: 10),
-        child: Icon(Icons.keyboard_alt_outlined, size: 12,color: Theme.of(context).disabledColor,),
+        child: Icon(
+          Icons.keyboard_alt_outlined,
+          size: 12,
+          color: Theme.of(context).disabledColor,
+        ),
       ),
     );
   }

@@ -82,13 +82,9 @@ class ModelOptionsView extends StatelessWidget {
       builder: (vm) {
         final options = vm.options;
         return PageDialog(
-          title: "Model Options",
-          closeButton: false,
-          titleActions: [
-            const Spacer(),
-            IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.close)),
-          ],
-          contentPadding: 6,
+          title: "Options",
+          closeButton: true,
+          contentPadding: 4,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -100,11 +96,11 @@ class ModelOptionsView extends StatelessWidget {
                         children: [
                           ListTile(
                             contentPadding: const EdgeInsets.only(left: 22, right: 10),
-                            title: const Text("Parameters"),
+                            title: const Text("API Parameters"),
                             subtitle: Text.rich(
                               style: const TextStyle(fontSize: 12, color: Colors.grey),
                               TextSpan(
-                                text: "/api/chat option ",
+                                text: "/api/chat model ",
                                 children: [
                                   WidgetSpan(
                                     alignment: PlaceholderAlignment.middle,
@@ -306,16 +302,18 @@ class ModelOptionsView extends StatelessWidget {
               const SizedBox(width: 20),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
+                  padding: const EdgeInsets.fromLTRB(0, 16, 20, 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
                         OllamaVm.find.model!.name.toUpperCase(),
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Stack(
                           children: [
                             TextField(

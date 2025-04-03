@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 
+class IconsPng {
+  static String qwen2 = "assets/models/qwen.png";
+  static String ollama = "assets/models/ollama.png";
+  static String llama = "assets/models/llama.png";
+  static String llava = "assets/models/llava.png";
+  static String mistral = "assets/models/mistral.png";
+  static String granite = "assets/models/granite.png";
+  static String deepseek = "assets/models/deep-seek.png";
+  static String microsoft = "assets/models/microsoft.png";
+  static String gemma = "assets/models/gemma.png";
+  static String logoBlack = "assets/logo/logo-black.png";
+  static String logoWhite = "assets/logo/logo-white.png";
+}
+
 class IconPng extends StatelessWidget {
   final double size;
   final String icon;
@@ -23,18 +37,4 @@ class IconPng extends StatelessWidget {
       ),
     );
   }
-}
-
-class IconsPng {
-  static String qwen2 = "assets/models/qwen.png";
-  static String ollama = "assets/models/ollama.png";
-  static String llama = "assets/models/llama.png";
-  static String llava = "assets/models/llava.png";
-  static String mistral = "assets/models/mistral.png";
-  static String granite = "assets/models/granite.png";
-  static String deepseek = "assets/models/deep-seek.png";
-  static String microsoft = "assets/models/microsoft.png";
-  static String gemma = "assets/models/gemma.png";
-  static String logoBlack = "assets/logo/logo-black.png";
-  static String logoWhite = "assets/logo/logo-white.png";
 }

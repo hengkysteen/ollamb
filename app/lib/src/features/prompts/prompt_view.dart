@@ -111,10 +111,8 @@ class PromptView extends StatelessWidget {
       init: PromptsVm(PromtpRepository(DM.promptStorage), type: type),
       builder: (vm) {
         return PageDialog(
-          title: "Prompt Collections",
-          titleActions: [
-            MoreButton(vm),
-          ],
+          title: "Prompts",
+          titleActions: [MoreButton(vm)],
           child: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Row(

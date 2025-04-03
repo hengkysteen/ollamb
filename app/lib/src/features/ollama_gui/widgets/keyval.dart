@@ -20,6 +20,7 @@ class KeyValWidget extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
+          const SizedBox(height: 6),
           Column(
             children: data!.entries.toList().asMap().entries.map((entry) {
               int index = entry.key;
