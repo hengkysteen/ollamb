@@ -1,13 +1,9 @@
-# Ollamb
+<p align="center">
+  <img src="assets/logo.png" width="90" />
+</p>
 
-A simple ollama client.
-
-<p>
-<img src="assets/ss/1.png" width="200" />
-<img src="assets/ss/2.png" width="200" />
-<img src="assets/ss/3.png" width="200" />
-<img src="assets/ss/4.png" width="200" />
-</P>
+<h1 align="center">Ollamb</h1>
+<p align="center">A simple ollama client.</p>
 
 ## Demo
 
@@ -73,3 +69,6 @@ Extract the archive and run it using any local HTTP server.
 cd Ollamb-web
 http-server
 ```
+
+## References
+- [Ollama](https://ollama.com/)

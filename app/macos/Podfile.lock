@@ -30,12 +30,12 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
 
 SPEC CHECKSUMS:
-  file_selector_macos: cc3858c981fe6889f364731200d6232dac1d812d
-  flutter_tts: 64651204e5d276ffea5a910f942d5e9785a96085
+  file_selector_macos: 6280b52b459ae6c590af5d78fc35c7267a3c4b31
+  flutter_tts: ae915565cc6948444b513acc8ee021993281e027
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  url_launcher_macos: c82c93949963e55b228a30115bd219499a6fe404
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  url_launcher_macos: 0fba8ddabfc33ce0a9afe7c5fef5aab3d8d2d673
 
 PODFILE CHECKSUM: 9ebaf0ce3d369aaa26a9ea0e159195ed94724cf3
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
